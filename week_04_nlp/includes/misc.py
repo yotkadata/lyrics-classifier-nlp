@@ -41,7 +41,7 @@ def convert_lyrics_to_lines(df_: pd.DataFrame) -> pd.DataFrame:
     df_ = df_[df_["lyrics"] != ""]
 
     file_name = "songs_by_line.csv"
-    df_.to_csv(conf["base_path"] + file_name)
+    df_.to_csv(conf["base_path"] + "data/" + file_name)
     print(f"Saved lyrics by line to {file_name}")
 
     return df_

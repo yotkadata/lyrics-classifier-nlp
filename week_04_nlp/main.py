@@ -27,7 +27,9 @@ def main():
         misc.convert_lyrics_to_lines(songs)
 
     # Import CSV file with lyrics
-    df_corpus = pd.read_csv(conf["base_path"] + "songs_by_line.csv", index_col=0)
+    df_corpus = pd.read_csv(
+        conf["base_path"] + "data/" + "songs_by_line.csv", index_col=0
+    )
 
     # Create wordclouds
     if conf["create_wordclouds"]:
