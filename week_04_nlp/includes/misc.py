@@ -98,7 +98,10 @@ def plot_wordcloud(corpus: str, name: str, shape: str = "rect") -> None:
         height = int(width / 2)
 
         # Create image with text
-        mask = np.array(wordcloud_create_img(name, width=width, height=height))
+        wordcloud_img = wordcloud_create_img(name, width=width, height=height)
+        if wordcloud_img is None:
+            return None
+        mask = np.array(wordcloud_img)
     else:
         mask = None
 
