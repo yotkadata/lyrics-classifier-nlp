@@ -2,6 +2,7 @@
 Other helper functions for the project.
 """
 
+import os
 import re
 
 import matplotlib.pyplot as plt
@@ -51,8 +52,14 @@ def wordcloud_create_img(text: str, width: int = 2000, height: int = 1500):
     """
     Function to create an image containing the artist name.
     """
-    # Define font to be used
-    font = ImageFont.truetype("Boldova.ttf", size=600)
+    # Define font to be used (downloaded from https://www.cufonfonts.com/font/boldova)
+    font_file = "data/Boldova.ttf"
+
+    if not os.path.isfile(font_file):
+        print("Error: Font file not found.")
+        return None
+
+    font = ImageFont.truetype(font_file, size=600)
 
     # Create image
     img = Image.new("RGB", (width, height), color="white")
