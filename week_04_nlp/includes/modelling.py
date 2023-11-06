@@ -3,6 +3,7 @@ Helper functions for modelling.
 """
 
 import time
+from pathlib import Path
 
 import joblib
 import pandas as pd
@@ -141,7 +142,12 @@ def fit_model(model_, corpus_, labels_):
     # Check score
     print(f"Score: {model_.score(corpus_, labels_)}")
 
-    # Save trained model
+    # Save model
+    file_path = conf["base_path"] + "models/"
     file_name = "trained_model.pkl"
-    joblib.dump(trained_model, conf["base_path"] + file_name)
-    print(f"Model saved as {file_name}.")
+
+    # Use Path to create directories if they don't exist
+    Path(file_path).mkdir(parents=True, exist_ok=True)
+
+    joblib.dump(trained_model, file_path + file_name)
+    print(f"Model saved as {file_path + file_name}.")
