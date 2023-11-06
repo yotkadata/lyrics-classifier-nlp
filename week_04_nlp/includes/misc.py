@@ -127,3 +127,5 @@ def plot_wordcloud(corpus: str, name: str, shape: str = "rect") -> None:
     plt.axis("off")
     # Save as file
     plt.savefig(f"wordclouds/wordcloud-{name}-{shape}.png", dpi=72, bbox_inches="tight")
+
+    return None
