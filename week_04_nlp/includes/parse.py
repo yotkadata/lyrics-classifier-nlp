@@ -168,9 +168,10 @@ def parse_lyrics_from_files(artist_urls: dict[str, str]) -> pd.DataFrame:
     songs_clean = clean.clean_data(songs)
 
     # Save DataFrame to CSV
+    dir_path = conf["base_path"] + "data/"
     file_name_csv_clean = "songs_clean.csv"
-    songs_clean.to_csv(conf["base_path"] + "data/" + file_name_csv_clean)
+    songs_clean.to_csv(dir_path + file_name_csv_clean)
 
-    print(f"Saved {len(songs_clean)} songs to {file_name_csv_clean}")
+    print(f"Saved {len(songs_clean)} songs to {dir_path + file_name_csv_clean}")
 
     return songs_clean
