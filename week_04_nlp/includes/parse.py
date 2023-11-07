@@ -2,6 +2,7 @@
 Helper functions for parsing.
 """
 import os
+from pathlib import Path
 
 import pandas as pd
 import requests
@@ -118,8 +119,13 @@ def get_files_to_parse(artists: list[str]) -> dict:
     for artist in artists:
         # Directory holding HTML files
         path_html_files = (
-            conf["base_path"] + conf["scrape_path"] + "/" + misc.shorten_artist(artist)
+            conf["base_path"] + conf["scrape_path"] + misc.shorten_artist(artist)
         )
+
+        # Check if directory exists
+        if not Path(path_html_files).is_dir():
+            print(f"Error: Directory not found. ({path_html_files})")
+            continue
 
         all_files[artist] = [
             f
@@ -153,6 +159,10 @@ def parse_lyrics_from_files(artist_urls: dict[str, str]) -> pd.DataFrame:
             )
             title_, artist_, lyrics_ = get_lyrics_from_file(path_html_file)
             songs.loc[len(songs)] = [title_, artist_, lyrics_]  # type: ignore
+
+    if songs.shape[0] == 0:
+        print("Error: No lyrics found.")
+        return None
 
     # Clean data
     songs_clean = clean.clean_data(songs)

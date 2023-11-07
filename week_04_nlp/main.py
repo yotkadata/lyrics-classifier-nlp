@@ -30,8 +30,12 @@ def main():
         print("Parsing lyrics from file and save them in a CSV file")
         songs = parse.parse_lyrics_from_files(conf["artist_urls"])
 
-        print("Converting lyrics to lines")
-        misc.convert_lyrics_to_lines(songs)
+        if isinstance(songs, pd.DataFrame):
+            print("Converting lyrics to lines")
+            misc.convert_lyrics_to_lines(songs)
+        else:
+            print("Error: Parsing result has no data.")
+            sys.exit(1)
     else:
         print("Skip parsing lyrics from file and save them in a CSV file")
 
