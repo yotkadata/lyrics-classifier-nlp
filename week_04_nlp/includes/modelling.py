@@ -9,6 +9,7 @@ import joblib
 import pandas as pd
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline as PipelineIMB
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
@@ -90,6 +91,11 @@ def tune_hyperparameters(corpus_: list[str], labels_: list[str]):
     """
     Function to tune the model's hyperparameters.
     """
+
+    # Make sure necessary NLTK files have been downloaded
+    nltk.download("wordnet")
+    nltk.download("stopwords")
+
     model = PipelineIMB(
         steps=[
             ("tdidf", TfidfVectorizer(stop_words=list(stopwords.words("english")))),
