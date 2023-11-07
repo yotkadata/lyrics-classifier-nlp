@@ -143,11 +143,20 @@ def fit_model(model_, corpus_, labels_):
     print(f"Score: {model_.score(corpus_, labels_)}")
 
     # Save model
-    file_path = conf["base_path"] + "models/"
+    dir_path = conf["base_path"] + "models/"
     file_name = "trained_model.pkl"
 
-    # Use Path to create directories if they don't exist
-    Path(file_path).mkdir(parents=True, exist_ok=True)
+    save_model(trained_model, dir_path, file_name)
 
-    joblib.dump(trained_model, file_path + file_name)
-    print(f"Model saved as {file_path + file_name}.")
+    print(f"Model saved as {dir_path + file_name}.")
+
+
+def save_model(trained_model, dir_path: str, file_name: str):
+    """
+    Function to save a model to a file.
+    """
+    # Use Path to create directories if they don't exist
+    Path(dir_path).mkdir(parents=True, exist_ok=True)
+
+    joblib.dump(trained_model, dir_path + file_name)
+    print(f"Model saved as {dir_path + file_name}.")
