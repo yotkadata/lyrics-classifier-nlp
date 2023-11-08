@@ -119,45 +119,34 @@ def tune_hyperparameters(corpus_: list[str], labels_: list[str]):
         verbose=1,
     )
 
-    # initial time
-    t_initial = time.time()
+    time_initial = time.time()
 
-    # grid-search cross-validation
+    # Grid Search cross-validation
     gscv.fit(corpus_, labels_)
 
-    # final time
-    t_final = time.time()
+    time_final = time.time()
 
-    # time taken
-    print(f"time taken: {round(t_final-t_initial,2)} sec")
+    print(f"time taken: {round(time_final-time_initial,2)} sec")
 
     print(f"Best parameters: {gscv.best_params_}")
-    print(f"Best score: {round(gscv.best_score_,6)}")
+    print(
+        f"Best cross-validation score during Grid Search: {round(gscv.best_score_,6)}"
+    )
 
-    return gscv.best_estimator_
-
-
-def fit_model(model_, corpus_, labels_):
-    """
-    Function to fit the model and save it.
-    """
-    # Fit the model with the vectorized data
-    print("Fit model")
-    trained_model = model_.fit(corpus_, labels_)
-
-    # Check score
-    print(f"Score: {model_.score(corpus_, labels_)}")
+    # Score on the entire dataset using the best estimator
+    best_estimator = gscv.best_estimator_
+    score_on_entire_dataset = best_estimator.score(corpus_, labels_)
+    print(f"Score on the entire dataset: {score_on_entire_dataset}")
 
     # Save model
     dir_path = conf["base_path"] + "models/"
     file_name = "trained_model.pkl"
+    save_model(best_estimator, dir_path, file_name)
 
-    save_model(trained_model, dir_path, file_name)
-
-    print(f"Model saved as {dir_path + file_name}.")
+    return best_estimator
 
 
-def save_model(trained_model, dir_path: str, file_name: str):
+def save_model(trained_model, dir_path: str, file_name: str) -> None:
     """
     Function to save a model to a file.
     """
@@ -166,3 +155,10 @@ def save_model(trained_model, dir_path: str, file_name: str):
 
     joblib.dump(trained_model, dir_path + file_name)
     print(f"Model saved as {dir_path + file_name}.")
+
+
+def load_model(dir_path: str, file_name: str):
+    """
+    Function to load a model from a file.
+    """
+    return joblib.load(dir_path + file_name)
