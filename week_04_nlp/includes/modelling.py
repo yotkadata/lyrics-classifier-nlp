@@ -126,17 +126,17 @@ def tune_hyperparameters(corpus_: list[str], labels_: list[str]):
 
     time_final = time.time()
 
-    print(f"time taken: {round(time_final-time_initial,2)} sec")
+    print(f"time taken: {round(time_final-time_initial, 2)} sec")
 
     print(f"Best parameters: {gscv.best_params_}")
     print(
-        f"Best cross-validation score during Grid Search: {round(gscv.best_score_,6)}"
+        f"Best cross-validation score during Grid Search: {round(gscv.best_score_, 6)}"
     )
 
     # Score on the entire dataset using the best estimator
     best_estimator = gscv.best_estimator_
     score_on_entire_dataset = best_estimator.score(corpus_, labels_)
-    print(f"Score on the entire dataset: {score_on_entire_dataset}")
+    print(f"Score on the entire dataset: {round(score_on_entire_dataset, 6)}")
 
     # Save model
     dir_path = conf["base_path"] + "models/"

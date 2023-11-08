@@ -71,10 +71,8 @@ def main():
         corpus_clean = modelling.preprocess_corpus(corpus)
         assert len(corpus_clean) == len(corpus_clean)
 
-        model = modelling.tune_hyperparameters(corpus_clean, labels)
-
-        print("Fit the model with the vectorized data")
-        modelling.fit_model(model, corpus_clean, labels)
+        # Tune hyperparameters and save fitted model to file
+        modelling.tune_hyperparameters(corpus_clean, labels)
     else:
         print("Skip training model")
 
