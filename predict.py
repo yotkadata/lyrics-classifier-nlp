@@ -14,6 +14,10 @@ def main():
 
     keep_asking = True
 
+    # Load model
+    file_name = "trained_model.pkl"
+    model = joblib.load(conf["base_path"] + file_name)
+
     while keep_asking:
         print(
             "Enter a line from a song by the Eels, Adele, or Rage Against the Machine"
@@ -31,10 +35,6 @@ def main():
 
         # Preprocess
         lyrics_clean = modelling.preprocess_corpus(lyrics)
-
-        # Load model
-        file_name = "trained_model.pkl"
-        model = joblib.load(conf["base_path"] + file_name)
 
         # Get results
         predictions = model.predict(lyrics_clean)
