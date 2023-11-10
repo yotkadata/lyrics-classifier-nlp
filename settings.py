@@ -12,7 +12,7 @@ conf = {
     "parse_html": False,
     "create_wordclouds": False,
     "train_model": True,
-    "sleep_sec": 3,
+    "sleep_sec": 10,
     "header": {
         "user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0"
     },
