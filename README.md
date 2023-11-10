@@ -30,7 +30,9 @@ The Jupyter Notebook included in the proyect uses the the functions defined in t
 
 ## Word Clouds
 
-The script includes the possibility to create word clouds from the corpus. See the function `plot_wordcloud()` in `includes/misc.py` or the example the Jupyter Notebook. Here are some examples:
+The script includes the possibility to create word clouds from the corpus. See the function `plot_wordcloud()` in `includes/misc.py` or the example the Jupyter Notebook. To create the `text` option, download the [Boldova font](https://www.cufonfonts.com/font/boldova) first and place the ttf in `data/Boldova.ttf`.
+
+Here are some examples (Left to right: Adele, Eels, Rage Against The Machine):
 
 ### Rectangle
 
