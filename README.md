@@ -10,7 +10,7 @@ In this project, we build a text classification model on song lyrics. The task i
 - Clean and preprocess the lyrics using `TreebankWordTokenizer` and `WordNetLemmatizer` from the `nltk` library
 - Vectorize the text using `TfidfVectorizer` from the `sklearn` library
 - Build and hypertune a classification model using Naive Bayes classifier for multinomial models (`MultinomialNB`)
-- Predicts the artist from a piece of text based on the trained model
+- Predict the artist from a piece of text based on the trained model
 
 ## Script
 
