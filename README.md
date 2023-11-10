@@ -6,11 +6,13 @@ In this project, we build a text classification model on song lyrics. The task i
 
 - Download a HTML page from lyrics.com with links to songs using the `requests` library
 - Extract hyperlinks of song pages using the `BeautifulSoup` library
-- Download and extract the song lyrics and save them to a CSV file using the `requests` and `pandas` libraries
+- Download and extract the song lyrics and save them to a temporary CSV file using the `requests` and `pandas` libraries
 - Clean and preprocess the lyrics using `TreebankWordTokenizer` and `WordNetLemmatizer` from the `nltk` library
 - Vectorize the text using `TfidfVectorizer` from the `sklearn` library
-- Build and hypertune a classification model using `MultinomialNB`
+- Build and hypertune a classification model using Naive Bayes classifier for multinomial models (`MultinomialNB`)
 - Predicts the artist from a piece of text based on the trained model
+
+## Script
 
 All these steps are implemented in the files contained in `includes`. To **run the project**, define configuration in `settings.py` and run `main.py` in the root directory. To **predict the artist** from a piece of text, run `predict.py` in the root directory.
 
@@ -21,6 +23,10 @@ Running `main.py` with all options set tu `True` will create the following files
 - **`models/trained_model.pkl`** will contain the trained model
 
 The trained model is included in the project. To just try out the prediction, you can run `predict.py` without running `main.py` first.
+
+## Notebook
+
+The Jupyter Notebook included in the proyect uses the the functions defined in the files in `include` to walk through the steps of the script.
 
 ## Word Clouds
 
@@ -67,3 +73,7 @@ The script includes the possibility to create word clouds from the corpus. See t
     <img src="https://github.com/yotkadata/lyrics-classifier-nlp/blob/main/wordclouds/wordcloud-ratm-text.png?raw=true" width="250" />
   </a>
 </p>
+
+## Other
+
+This project was a weekly project in the Data Science Bootcamp at Spiced Academy, April 2023.
