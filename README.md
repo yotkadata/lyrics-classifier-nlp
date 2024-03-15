@@ -14,7 +14,7 @@ In this project, we build a text classification model on song lyrics. The task i
 
 ## Script
 
-All these steps are implemented in the files contained in `includes`. To **run the project**, create a Python environment, install dependencies from `requirements.txt`, define configuration in `settings.py`, and run `main.py` in the root directory. To **predict the artist** from a piece of text, run `predict.py` in the root directory.
+All these steps are implemented in the files contained in `includes`. To **run the project**, create a Python environment (Python 3.11), install dependencies from `requirements.txt`, define configuration in `settings.py`, and run `main.py` in the root directory. To **predict the artist** from a piece of text, run `predict.py` in the root directory.
 
 Running `main.py` with all options set tu `True` will create the following files in the `data` and `models` directories:
 
