@@ -16,7 +16,7 @@ def main():
 
     # Load model
     file_name = "trained_model.pkl"
-    model = joblib.load(conf["base_path"] + file_name)
+    model = joblib.load(conf["base_path"] + "models/" + file_name)
 
     while keep_asking:
         print(
