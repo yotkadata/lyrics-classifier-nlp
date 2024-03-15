@@ -9,14 +9,15 @@ import joblib
 import pandas as pd
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline as PipelineIMB
-import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
-from settings import conf
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import GridSearchCV
 from sklearn.naive_bayes import MultinomialNB
+
+from includes.misc import download_nltk_data
+from settings import conf
 
 
 def prepare_corpus(df_c: pd.DataFrame) -> tuple[list[str], list[str]]:
@@ -93,8 +94,8 @@ def tune_hyperparameters(corpus_: list[str], labels_: list[str]):
     """
 
     # Make sure necessary NLTK files have been downloaded
-    nltk.download("wordnet")
-    nltk.download("stopwords")
+    download_nltk_data("wordnet")
+    download_nltk_data("stopwords")
 
     model = PipelineIMB(
         steps=[

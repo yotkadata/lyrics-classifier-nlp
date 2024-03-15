@@ -6,11 +6,13 @@ import os
 import re
 
 import matplotlib.pyplot as plt
+import nltk
 import numpy as np
 import pandas as pd
 from PIL import Image, ImageDraw, ImageFont
-from settings import conf
 from wordcloud import STOPWORDS, WordCloud
+
+from settings import conf
 
 
 def shorten_artist(artist: str) -> str:
@@ -128,5 +130,24 @@ def plot_wordcloud(corpus: str, name: str, shape: str = "rect") -> None:
     plt.axis("off")
     # Save as file
     plt.savefig(f"wordclouds/wordcloud-{name}-{shape}.png", dpi=72, bbox_inches="tight")
+
+    return None
+
+
+def download_nltk_data(data_type: str) -> None:
+    """
+    Function to download the NLTK data.
+    """
+
+    if data_type not in ["wordnet", "stopwords"]:
+        print("Error: Invalid data type.")
+        return None
+
+    data_directory = conf["base_path"] + "data/nltk/"
+
+    # Check if zip is already in the data directory
+    if not os.path.isfile(data_directory + "corpora/" + data_type + ".zip"):
+        print("Downloading NLTK data")
+        nltk.download(data_type, download_dir=data_directory)
 
     return None

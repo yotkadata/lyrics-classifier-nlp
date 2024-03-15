@@ -3,7 +3,8 @@ Python script to predict the artist of a song based on its lyrics.
 """
 
 import joblib
-from includes import modelling
+
+from includes import misc, modelling
 from settings import conf
 
 
@@ -17,6 +18,9 @@ def main():
     # Load model
     file_name = "trained_model.pkl"
     model = joblib.load(conf["base_path"] + "models/" + file_name)
+
+    misc.download_nltk_data("wordnet")
+    misc.download_nltk_data("stopwords")
 
     while keep_asking:
         print(
